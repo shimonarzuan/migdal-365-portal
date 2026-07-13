@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 170" width="560" height="170">
+  <!-- לוגו מגדל העמק — שחזור וקטורי (להחלפה בקובץ הרשמי) -->
+  <g transform="translate(462,85)">
+    <g fill="none" stroke-linecap="round">
+      <path d="M 0 -76 A 76 76 0 0 1 65.8 -38" stroke="#ee3d70" stroke-width="17"/>
+      <path d="M 76 0 A 76 76 0 0 1 38 65.8" stroke="#2cb5c8" stroke-width="17"/>
+      <path d="M -38 65.8 A 76 76 0 0 1 -76 0" stroke="#f9c93c" stroke-width="17"/>
+      <path d="M -65.8 -38 A 76 76 0 0 1 -28 -70.6" stroke="#145d7c" stroke-width="17"/>
+      <path d="M 0 -52 A 52 52 0 0 1 45 -26" stroke="#f9c93c" stroke-width="15"/>
+      <path d="M 52 0 A 52 52 0 0 1 26 45" stroke="#ee3d70" stroke-width="15"/>
+      <path d="M -26 45 A 52 52 0 0 1 -52 0" stroke="#2cb5c8" stroke-width="15"/>
+      <path d="M -45 -26 A 52 52 0 0 1 -18 -48.8" stroke="#fbe7ad" stroke-width="15"/>
+    </g>
+    <g fill="#145d7c">
+      <ellipse cx="0" cy="-31" rx="16" ry="7.5"/>
+      <path d="M -14 -29 Q 0 -41 14 -29 L 12.5 -19 L -12.5 -19 Z"/>
+      <rect x="-12.5" y="-19" width="25" height="7" rx="2"/>
+      <path d="M -10 -12 L 10 -12 L 21 44 L -21 44 Z"/>
+    </g>
+    <rect x="-21" y="19" width="42" height="4.5" fill="#ffffff" opacity="0.95"/>
+  </g>
+  <g text-anchor="end" font-family="Heebo, 'Segoe UI', 'Arial Hebrew', Arial, sans-serif">
+    <text x="356" y="80" font-size="62" font-weight="800" fill="#274b5d">מגדל העמק</text>
+    <text x="356" y="126" font-size="28" font-weight="700" fill="#2cb5c8">‏צומחים. מתחדשים.‏</text>
+  </g>
+</svg>

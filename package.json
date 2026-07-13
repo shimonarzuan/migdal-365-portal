@@ -1,0 +1,32 @@
+{
+  "name": "migdal-365",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Municipal employee portal platform - config-driven multi-tenant",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@azure/msal-browser": "^4.0.0",
+    "@azure/msal-react": "^3.0.0",
+    "@fluentui/react-components": "^9.74.3",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "lucide-react": "^1.24.0",
+    "motion": "^12.42.2",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.7.0",
+    "vite": "^8.1.1"
+  }
+}

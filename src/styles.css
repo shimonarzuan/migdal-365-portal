@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+/* ─── Migdal 365 · בסיס עיצובי ───
+   צבעי המותג מוזרקים כ-CSS Variables מקובץ הקונפיגורציה (AppShell) */
+
+html {
+  direction: rtl;
+}
+
+/* ─── Motion Design System — טוקנים (מסונכרן ידנית עם src/shared/motion.ts) ───
+   שינוי משך/עקומה כאן → יש לעדכן גם ב-motionTokens שם. */
+:root {
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --dur-slow: 320ms;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in: cubic-bezier(.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+}
+
+/* ─── Design Tokens — מקור אמת יחיד לצבע/מרווח/רדיוס/צל/טיפוגרפיה/z-index ───
+   פלטת המותג (--primary/--primary-dark/--accent/--sky) מוזרקת ב-AppShell
+   מ-settings.colors; כאן נקבעות ברירות מחדל (למסך ההתחברות) + כל השכבה
+   הסמנטית שנגזרת ממנה. אין לפזר צבעי hex בתוך קומפוננטות — להשתמש בטוקנים. */
+:root {
+  /* מותג — ברירת מחדל טורקיז מגדל העמק (מוחלף בזמן ריצה ע"י AppShell) */
+  --primary: #2A9090;
+  --primary-dark: #1B6B6B;
+  --accent: #e2f1f1;
+  --sky: #37b3b3;
+  --on-primary: #ffffff;
+
+  /* משטחים — רקע ניטרלי-קריר, כרטיסים לבנים המופרדים ב-Border (לא בצל) */
+  --app-bg: #f5f7f8;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-sunken: #f4f6f7;
+  --surface-hover: #f1f5f5;
+  --surface-active: #e6eeee;
+
+  /* טקסט — ניגודיות חזקה, פחות אפור (ראשי כמעט-שחור ניטרלי) */
+  --text: #10201f;          /* ראשי  */
+  --text-secondary: #4b5d5b; /* משני  */
+  --text-muted: #7a8b89;    /* עמום  */
+  --text-on-primary: #ffffff;
+
+  /* גבולות + מצבים — Border הוא המפריד העיקרי */
+  --border: #e4e9e9;
+  --border-strong: #cfd8d8;
+  --focus-ring: var(--primary);
+  --disabled-opacity: 0.45;
+
+  /* צבעים סמנטיים — טקסט מגיע לניגודיות AA מול הרקע התואם */
+  --info: #1667a8;      --info-bg: #e7f1fa;      --info-text: #0f4c82;
+  --success: #3D9B4A;   --success-bg: #e6f4e8;   --success-text: #256b2f;
+  --warning: #b7860b;   --warning-bg: #fdf4dc;   --warning-text: #7a5905;
+  --danger: #E8403A;    --danger-bg: #fdeae9;    --danger-text: #b02a25;
+  --gold: #F5C518;
+
+  /* צללים — כמעט בלתי נראים; משמשים רק ל-overlay/popover/dropdown */
+  --shadow-sm: 0 1px 1px rgb(16 32 31 / 3%);
+  --shadow-md: 0 1px 3px rgb(16 32 31 / 6%);
+  --shadow-lg: 0 6px 20px -6px rgb(16 32 31 / 14%);
+  --shadow-focus: 0 0 0 3px rgb(42 144 144 / 20%);
+
+  /* רדיוס — מוקטן, בסגנון Fluent 2 / Linear */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* מרווחים — קצב 4px */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 20px;  --space-6: 24px;  --space-8: 32px;  --space-10: 40px;
+  --space-12: 48px; --space-16: 64px;
+
+  /* טיפוגרפיה — סקאלה עקבית (Heebo) */
+  --font-sans: 'Heebo', 'Segoe UI', system-ui, sans-serif;
+  --text-xs: 12px;   --text-sm: 13px;   --text-base: 14px; --text-md: 16px;
+  --text-lg: 18px;   --text-xl: 22px;   --text-2xl: 28px;  --text-3xl: 34px;
+  --leading-tight: 1.25; --leading-normal: 1.5; --leading-relaxed: 1.7;
+  --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
+
+  /* z-index — סקאלה מדורגת */
+  --z-base: 0; --z-dropdown: 20; --z-sticky: 30; --z-drawer: 40;
+  --z-overlay: 50; --z-modal: 60; --z-toast: 70;
+}
+
+/* נגישות: מכבד prefers-reduced-motion בכל האתר — CSS ו-Framer כאחד
+   (Framer מתאפס דרך useMotionSafe/useReducedMotion בקוד) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* נגישות: פוקוס נראה בכל האלמנטים האינטראקטיביים */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* גלילה עדינה */
+* {
+  scrollbar-width: thin;
+}
+
+/* אנימציית כניסה עדינה לכרטיס העובד */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* מצב טעינה — פעימת opacity בלבד (לא background-position/width) */
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.skeleton-pulse {
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}
+
+/* אייקון מרחף במסכי ריקנות — אמפליטודה נמוכה, transform בלבד */
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.float-icon {
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+/* Ripple עדין ללחיצה — פעימת opacity+transform ממורכזת (ללא מעקב מיקום עכבר) */
+.ripple-lite { position: relative; overflow: hidden; }
+.ripple-lite::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, currentColor 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out);
+  pointer-events: none;
+}
+.ripple-lite:active::before {
+  opacity: 0.16;
+  transform: scale(1.4);
+  transition-duration: 60ms;
+}
+
+/* זכוכית עדינה (Glass Effect) — לפאנלים על רקע הירו */
+.glass-panel {
+  background: rgb(255 255 255 / 12%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgb(255 255 255 / 18%);
+}
+
+/* צורות מרחפות ברקע הירו — transform בלבד, אמפליטודה נמוכה */
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-8px, 10px); }
+}
+.float-shape { animation: floatShape 9s ease-in-out infinite; }
+.float-shape-slow { animation: floatShape 13s ease-in-out infinite reverse; }
+
+/* טשטוש רקע (Blur Background) לדיאלוגים של Fluent UI — hook יציב של הספרייה */
+.fui-DialogSurface__backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* גלילה נעימה בעץ הארגוני */
+.org-scroll { scroll-behavior: smooth; }
+.org-scroll::-webkit-scrollbar { width: 8px; }
+.org-scroll::-webkit-scrollbar-track { background: transparent; }
+.org-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+.org-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
